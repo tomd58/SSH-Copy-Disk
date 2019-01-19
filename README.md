@@ -4,7 +4,7 @@ Written by Tommy Davidson
 
 Pretty straightforward - copies a disk over SSH by rebooting a Linode into Rescue Mode, and performing the instructions in Linode's guide on [Copying a Disk Over SSH](https://www.linode.com/docs/migrate-to-linode/disk-images/copying-a-disk-image-over-ssh). The script uses public key authentication, but sets a root password because SSH won't let you login if a password isn't set. You don't need this password for anything, and it can be safely ignored, since it's only relevant to Rescue Mode, and is unset when the script reboots the Linode at the end, anyway.
 
-As indicated above, this script is tested, and confirmed to work on MacOS and Linux. It requires that the Linode CLIv4 be installed in order to reboot the Linode and to place it in Rescue Mode.
+This script is tested, and confirmed to work on MacOS and Linux. It requires that the Linode CLIv4 be installed in order to reboot the Linode and to place it in Rescue Mode.
 
 **Usage:**
 ```
