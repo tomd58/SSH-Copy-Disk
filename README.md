@@ -22,13 +22,16 @@ copydisk.sh TestLinode2 username singapore
 - Linux
 
 **Dependencies:**
-- Bash
 - [Linode CLIv4](https://www.linode.com/docs/platform/api/using-the-linode-cli/)
 
 **Assumptions:**
-- You have only one data disk in your Linode's Configuration Profile. I may update this later to account for multiple disk configurations, but I haven't considered what that will look like yet, so I don't know when.
+- You have only one data disk in your Linode's Configuration Profile (swap disk is ignored by the script). I may update this later to account for multiple disk configurations, but I haven't considered what that will look like yet, so I don't know when.
+- [Public Key Authentication](https://www.linode.com/docs/security/authentication/use-public-key-authentication-with-ssh/) is already configured on the machine that the script is running on.
 
-**Datacenters**
+**Recommendation:**
+- Have [LISH](https://www.linode.com/docs/networking/using-the-linode-shell-lish/) open in another window when running the script. In the event of an error, this will help you determine what went wrong.
+
+**Datacenters:**
 - atlanta
 - dallas
 - fremont
