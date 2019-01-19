@@ -54,6 +54,7 @@ CMDS=$(cat <<-CMD
 CMD
 )
 
+
 ## Connect to Rescue Mode via LiSH and run the commands, then fork the process into the background.
 ## The process is forked into the background using the '&' symbol at the end of the line to work
 ## around the fact that I can't find a good way to automate the pressing of Ctrl+A and Ctrl+D to exit LiSH.
@@ -84,14 +85,22 @@ until [[ $(linode-cli linodes list --text | grep "\b${Label}\b" | grep "\brunnin
     sleep 1
 done
 
-
 ## Compress the image to reduce it's size a bit.
-## Use 7zip if available, otherwise use gzip
 echo "Removing empty space from the image..."
 echo "Size before compression: " $(ls -lh | grep linodeImage | awk '{print $5}')
 
+## Use 7zip if available, otherwise use gzip
 if [ -x /usr/loca/bin/7z ]; then
     7z a linodeImage.img.7z linodeImage.img
 else
     gzip linodeImage.img
 fi && echo "Size after compression: " $(ls -lh | grep linodeImage | awk '{print $5}')
+
+## Kill off any backgrounded SSH processes.
+SSH_PIDs=($(ps aux | grep "\b${Label}\b" | awk '{print $2}'))
+
+for i in "${SSH_PIDs[@]}"; do
+    echo "Killing PID $i..."
+    kill $i || kill -9 $i
+    echo "Done"
+done
