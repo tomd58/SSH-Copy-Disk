@@ -96,7 +96,7 @@ else
     gzip linodeImage.img
 fi && echo "Size after compression: " $(ls -lh | grep linodeImage | awk '{print $5}')
 
-## Kill off any backgrounded SSH processes.
+## Kill off backgrounded SSH processes.
 SSH_PIDs=($(ps aux | grep "\b${Label}\b" | awk '{print $2}'))
 
 for i in "${SSH_PIDs[@]}"; do
