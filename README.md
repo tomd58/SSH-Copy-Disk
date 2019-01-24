@@ -20,7 +20,7 @@ copydisk.sh TestLinode3 username tokyo2 --verbose
 
 **Arguments:**
 - `<Linode Label>` - This is the name of the Linode to be copied.
-- `<Linode Manager Username>` - This is the username you use to login to linode.com
+- `<Linode Manager Username>` - This is the username you use to login to [linode.com](https://www.linode.com/)
 - `<Datacenter>` - This is the datacenter your Linode resides in (see list below).
 - `<-v|--verbose>` - Use either of these flags to put the script in verbose mode if you're having trouble.
 
