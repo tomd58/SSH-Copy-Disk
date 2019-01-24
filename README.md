@@ -8,14 +8,21 @@ This script is tested, and confirmed to work on MacOS and Linux. It requires tha
 
 **Usage:**
 ```
-copydisk.sh <Linode Label> <Linode Manager Username> <Datacenter>  
+copydisk.sh <Linode Label> <Linode Manager Username> <Datacenter> <-v|--verbose>
 ```
 
 **Examples:**
 ```
 copydisk.sh TestLinode username newark
-copydisk.sh TestLinode2 username singapore
+copydisk.sh TestLinode2 username singapore -v
+copydisk.sh TestLinode3 username tokyo2 --verbose
 ```
+
+**Flags:**
+- <Linode Label> - This is the name of the Linode to be copied.
+- <Linode Manager Username> - This is the username you use to login to linode.com
+- <Datacenter> - This is the datacenter your Linode resides in (see list below).
+- <-v|--verbose> - Use either of these flags to put the script in verbose mode if you're having trouble.
 
 **Supported Platforms:**
 - MacOS
