@@ -12,7 +12,12 @@ function arg_parse {
     local -r Local_LinodeID=$(linode-cli linodes list --text | grep "\b${Local_Label}\b" | awk '{print $1}')
     local -r Local_DiskID=$(linode-cli linodes disks-list ${Local_LinodeID} --text | awk '/ext4/{print $1}')
     local -r Local_IP="$(linode-cli linodes list --text | grep ${Local_LinodeID} | awk '{print $7}')"
-    local -a Return_Array=("${Local_Label}" "${Local_UserName}" "${Local_DC}" $Local_LinodeID $Local_DiskID "${Local_IP}")
+    local -a Return_Array=("${Local_Label}" \
+                           "${Local_UserName}" \
+                           "${Local_DC}" \
+                            $Local_LinodeID \
+                            $Local_DiskID \
+                           "${Local_IP}")
 
     ## Echo the parsed data back to the array in the calling function.
     echo "${Return_Array[@]}"
@@ -125,10 +130,10 @@ clear
 
 ## Check to ensure that arguments were passed at the command line, and error out if not.
 ## Otherwise, execute the script.
-[[ ! "${@}" ]] && {
+if [[ ! "${@}" ]]; then
     printf "No arguments specified. You must specify the name of the Linode, the username for your Linode account,\n"
     printf "and the datacenter in which the Linode resides.\n"
-} || {
+else
     ## You can use '-v' or '--verbose' to output errors to the LISH console if you're
     ## having trouble. Be forewarned - it's pretty verbose, due largely to some of the
     ## loops that wait for the Linode to reboot, etc...
@@ -168,4 +173,4 @@ clear
 
     ## Kill off any backgrounded ssh processes that may still be running.
     killall ssh
-}
+fi
