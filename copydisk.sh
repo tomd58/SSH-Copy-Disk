@@ -23,7 +23,6 @@ function arg_parse {
     echo "${Return_Array[@]}"
 }
 
-
 function reboot_linode {
     local -r Local_Mode="${1}"
     local -r Local_Label="${2}"
@@ -49,7 +48,6 @@ function reboot_linode {
         }
     fi
 }
-
 
 function configure_ssh {
     local -r Local_Label="${1}"
@@ -85,7 +83,6 @@ CMD
     ## UDATE - I may have found a better way to do this - will look into it and update this code if it pans out.
     echo "${CMDS}" | ssh -t -t ${Local_UserName}@lish-${Local_DC}.linode.com ${Local_Label} &
 }
-
 
 function copy_disk {
     local -r Local_IP="${1}"
